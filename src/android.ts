@@ -45,14 +45,10 @@ class CallDetectorManager {
   ) {
     this.callback = callback;
 
-    console.log('Platform.OS', Platform.OS);
-    console.log('NativeCallDetectorAndroid', NativeCallDetectorAndroid);
-
     if (Platform.OS === 'ios') {
       // should never happen here, android file
       return;
     } else if (NativeCallDetectorAndroid) {
-      console.log('NativeCallDetectorAndroid', NativeCallDetectorAndroid);
       if (readPhoneNumberAndroid) {
         requestPermissionsAndroid(permissionMessage)
           .then((permissionGrantedReadState) => {
@@ -64,12 +60,14 @@ class CallDetectorManager {
       }
 
       NativeCallDetectorAndroid.startListener().then((data) => {
-        console.log('data at startListener', data);
         if (data === 'success') {
           this.subscription = new NativeEventEmitter();
           this.subscription.addListener('PhoneCallStateUpdateAndroid', callback);
           initCallback();
+        } else {
+          initCallback('error at startListener');
         }
+
       });
     }
   }
