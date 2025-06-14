@@ -7,9 +7,6 @@ const CallDetector = Platform.OS === 'ios' ? CallDetectorIos : CallDetectorAndro
 if (Platform.OS === 'ios') {
   (CallDetector as any).checkPhoneState = CheckPhoneState;
   (CallDetector as any).makePhoneCall = MakePhoneCall;
-} else {
-  (CallDetector as any).makePhoneCall =
-    CallDetectorAndroid.makePhoneCallAndroid;
 }
 
 export default CallDetector;
