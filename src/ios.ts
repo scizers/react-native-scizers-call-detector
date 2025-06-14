@@ -42,8 +42,10 @@ export default class CallDetector {
   ) {
     this.callback = callback;
     if (Platform.OS === 'ios') {
+      console.log('CallDetectionModule ios before startliner  ');
       CallDetectionModule.startListener();
-      this.eventEmitter = new NativeEventEmitter();
+      console.log('CallDetectionModule ios before NativeEventEmitter  ');
+      this.eventEmitter = new NativeEventEmitter(CallDetectionModule);
       this.eventEmitter.addListener('PhoneCallStateUpdate', (state: string) => {
         this.callback(state as CallEvent, '');
       });
