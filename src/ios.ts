@@ -45,7 +45,7 @@ export default class CallDetector {
       console.log('CallDetectionModule ios before startliner  ');
       CallDetectionModule.startListener();
       console.log('CallDetectionModule ios before NativeEventEmitter  ');
-      this.eventEmitter = new NativeEventEmitter();
+      this.eventEmitter = new NativeEventEmitter(CallDetectionModule as any);
       this.eventEmitter.addListener('PhoneCallStateUpdate', (state: string) => {
         this.callback(state as CallEvent, '');
       });
@@ -60,7 +60,7 @@ export default class CallDetector {
           permissionDeniedCallback(permissionDenied);
         });
       CallDetectionModule.startListener();
-      this.eventEmitter = new NativeEventEmitter();
+      this.eventEmitter = new NativeEventEmitter(CallDetectionModule as any);
       this.eventEmitter.addListener('CallStateUpdate', (event: { state: string; phoneNumber: string }) => {
         this.callback(event.state as CallEvent, event.phoneNumber || '');
       });
