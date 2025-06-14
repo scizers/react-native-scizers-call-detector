@@ -45,6 +45,7 @@ class CallDetectorManager {
   ) {
     this.callback = callback;
 
+    console.log('Platform.OS', Platform.OS);
     if (Platform.OS === 'ios') {
       // should never happen here, android file
       return;
