@@ -87,6 +87,10 @@ class CallDetectorManager {
     }
   }
 
+  static getCallLogs(minTimestamp: number, maxTimestamp: number) {
+    return NativeCallDetectorAndroid.getCallLogs(minTimestamp, maxTimestamp)
+  }
+
   dispose() {
     NativeCallDetectorAndroid && NativeCallDetectorAndroid.stopListener();
     if (this.subscription) {
