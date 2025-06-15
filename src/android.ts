@@ -63,7 +63,7 @@ class CallDetectorManager {
         if (data === 'success') {
           this.subscription = new NativeEventEmitter();
           this.subscription.addListener('PhoneCallStateUpdateAndroid', callback);
-          initCallback();
+          initCallback('success at startListener');
         } else {
           initCallback('error at startListener');
         }
